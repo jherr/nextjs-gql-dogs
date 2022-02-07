@@ -33,9 +33,6 @@ export class DogsResolver {
   ): Dog[] {
     let filteredDogs = [...dogs];
 
-    console.log(`minAgeInWeeks: ${minAgeInWeeks}`);
-    console.log(`maxAgeInWeeks: ${maxAgeInWeeks}`);
-
     filteredDogs =
       minAgeInWeeks !== undefined
         ? filteredDogs.filter(({ ageInWeeks }) => ageInWeeks >= minAgeInWeeks)
