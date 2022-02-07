@@ -1,0 +1,8 @@
+import { GraphQLClient } from "graphql-request";
+import { QueryClient } from "react-query";
+
+import { getSdk } from "../src/graphql";
+
+const gqlClient = new GraphQLClient("http://localhost:3000/api/graphql");
+export const { getDogs, dogByName } = getSdk(gqlClient);
+export const queryClient = new QueryClient();

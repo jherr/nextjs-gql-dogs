@@ -1,0 +1,16 @@
+query getDogs($minWeight: Float, $maxWeight: Float, $sex: String, $minAgeInWeeks: Float, $maxAgeInWeeks: Float) {
+  dogs(
+    minWeight: $minWeight,
+    maxWeight: $maxWeight,
+    sex: $sex,
+    minAgeInWeeks: $minAgeInWeeks,
+    maxAgeInWeeks: $maxAgeInWeeks,
+  ) {
+    name
+    breed
+    ageInWeeks
+    image
+    sex
+    weight
+  }
+}
