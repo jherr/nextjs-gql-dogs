@@ -1,12 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Arg,
-  InputType,
-  Field,
-  Args,
-  Float,
-} from "type-graphql";
+import { Resolver, Query, Arg, Float } from "type-graphql";
 
 import { Dog } from "./dogs";
 import dogs from "./dogs.json";

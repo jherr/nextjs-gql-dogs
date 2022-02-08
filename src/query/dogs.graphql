@@ -12,5 +12,6 @@ query getDogs($minWeight: Float, $maxWeight: Float, $sex: String, $minAgeInWeeks
     image
     sex
     weight
+    fee
   }
 }
