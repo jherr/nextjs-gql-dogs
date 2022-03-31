@@ -3,7 +3,7 @@ import { ApolloServer } from "apollo-server-micro";
 import Cors from "micro-cors";
 import { buildSchema } from "type-graphql";
 
-import { DogsResolver } from "./dogs.resolver";
+import { DogsResolver } from "../../src/schema/dogs.resolver";
 
 const schema = await buildSchema({
   resolvers: [DogsResolver],

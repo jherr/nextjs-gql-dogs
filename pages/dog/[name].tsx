@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { dehydrate, useQuery } from "react-query";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Text, Button, Title, Image } from "@mantine/core";
 
 import { weeksToString } from "../../src/utilities";
 import { queryClient, dogByName } from "../../src/api";
@@ -33,59 +33,47 @@ const Home: React.FunctionComponent<{
   }
 
   return (
-    <Grid container gap={2}>
-      <Grid item xs={4}>
-        <img src={data.dog.image} alt={data.dog.name} width="100%" />
-      </Grid>
-      <Grid item xs={3}>
-        <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-          {data.dog.name}
-        </Typography>
+    <Grid>
+      <Grid.Col xs={12} md={6} lg={4}>
+        <Image src={data.dog.image} alt={data.dog.name} />
+      </Grid.Col>
+      <Grid.Col xs={12} md={6} lg={4}>
+        <Title order={1}>{data.dog.name}</Title>
 
-        <Grid container>
-          <Grid item xs={4}>
-            <Typography variant="h5">Age</Typography>
-          </Grid>
-          <Grid item xs={8}>
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-              {weeksToString(data.dog.ageInWeeks)}
-            </Typography>
-          </Grid>
-          <Grid item xs={4}>
-            <Typography variant="h5">Breed</Typography>
-          </Grid>
-          <Grid item xs={8}>
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-              {data.dog.breed}
-            </Typography>
-          </Grid>
-          <Grid item xs={4}>
-            <Typography variant="h5">Sex</Typography>
-          </Grid>
-          <Grid item xs={8}>
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-              {data.dog.sex}
-            </Typography>
-          </Grid>
+        <Grid mt={10}>
+          <Grid.Col span={4}>
+            <Title order={5}>Age</Title>
+          </Grid.Col>
+          <Grid.Col span={8}>
+            <Text>{weeksToString(data.dog.ageInWeeks)}</Text>
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <Title order={5}>Breed</Title>
+          </Grid.Col>
+          <Grid.Col span={8}>
+            <Text>{data.dog.breed}</Text>
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <Title order={5}>Sex</Title>
+          </Grid.Col>
+          <Grid.Col span={8}>
+            <Text>{data.dog.sex}</Text>
+          </Grid.Col>
           {data.dog.color && (
             <>
-              <Grid item xs={4}>
-                <Typography variant="h5">Color</Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  {data.dog.color}
-                </Typography>
-              </Grid>
+              <Grid.Col span={4}>
+                <Title order={5}>Color</Title>
+              </Grid.Col>
+              <Grid.Col span={8}>
+                <Text>{data.dog.color}</Text>
+              </Grid.Col>
             </>
           )}
         </Grid>
-      </Grid>
-      <Grid item xs={2}>
-        <Button variant="contained" fullWidth>
-          Adopt {data.dog.name}
-        </Button>
-      </Grid>
+      </Grid.Col>
+      <Grid.Col xs={12} md={6} lg={4}>
+        <Button fullWidth>Adopt {data.dog.name}</Button>
+      </Grid.Col>
     </Grid>
   );
 };

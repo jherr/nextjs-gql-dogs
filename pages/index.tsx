@@ -1,17 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { dehydrate, useQuery } from "react-query";
-import {
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import { Grid, Card, Image, Text, Select, Title } from "@mantine/core";
 
 import { queryClient, getDogs } from "../src/api";
 import { weeksToString } from "../src/utilities";
@@ -67,91 +57,62 @@ const Home: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Grid container gap={2}>
-        <Grid item xs={3}>
-          <FormControl fullWidth>
-            <InputLabel id="sex-label">Sex</InputLabel>
-            <Select
-              labelId="sex-label"
-              id="sex-select"
-              value={sex}
-              label="Sex"
-              onChange={(evt) => setSex(evt.target.value)}
-            >
-              <MenuItem value="">Any</MenuItem>
-              <MenuItem value="Male">Male</MenuItem>
-              <MenuItem value="Female">Female</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
+      <Grid>
+        <Grid.Col xs={12} md={3}>
+          <Select
+            value={sex}
+            label="Sex"
+            onChange={setSex}
+            data={[
+              { value: "", label: "Any" },
+              { value: "Male", label: "Male" },
+              { value: "Female", label: "Female" },
+            ]}
+          />
+        </Grid.Col>
 
-        <Grid item xs={3}>
-          <FormControl fullWidth>
-            <InputLabel id="sex-label">Age</InputLabel>
-            <Select
-              labelId="age-label"
-              id="age-select"
-              value={ageFilter}
-              label="Age"
-              onChange={(evt) => setAgeFilter(evt.target.value)}
-            >
-              <MenuItem value="">Any</MenuItem>
-              {ageFilters.map((filter) => (
-                <MenuItem value={filter.label} key={filter.label}>
-                  {filter.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
+        <Grid.Col xs={12} md={3}>
+          <Select
+            id="age-select"
+            value={ageFilter}
+            label="Age"
+            onChange={setAgeFilter}
+            data={[
+              { value: "", label: "Any" },
+              ...ageFilters.map(({ label }) => ({ value: label, label })),
+            ]}
+          />
+        </Grid.Col>
 
-        <Grid item xs={3}>
-          <FormControl fullWidth>
-            <InputLabel id="sex-label">Weight</InputLabel>
-            <Select
-              labelId="weight-label"
-              id="weight-select"
-              value={weightFilter}
-              label="Weight"
-              onChange={(evt) => setWeightFilter(evt.target.value)}
-            >
-              <MenuItem value="">Any</MenuItem>
-              {weightFilters.map((filter) => (
-                <MenuItem value={filter.label} key={filter.label}>
-                  {filter.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
+        <Grid.Col xs={12} md={3}>
+          <Select
+            value={weightFilter}
+            label="Weight"
+            onChange={setWeightFilter}
+            data={[
+              { value: "", label: "Any" },
+              ...weightFilters.map(({ label }) => ({ value: label, label })),
+            ]}
+          />
+        </Grid.Col>
       </Grid>
-      <Grid container>
+
+      <Grid mt={10}>
         {data?.dogs.map((f, i) => (
-          <Grid item xs={4} key={[f.name, i].join(":")} sx={{ p: 2 }}>
+          <Grid.Col xs={12} md={6} lg={4} key={[f.name, i].join(":")} p={5}>
             <Link href={`/dog/${f.name}`} passHref>
               <Card>
-                <CardMedia
-                  component="img"
-                  height={350}
-                  image={f.image}
-                  alt="green iguana"
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    sx={{ fontWeight: "bold" }}
-                  >
-                    {f.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {f.weight} pound {weeksToString(f.ageInWeeks)} old{" "}
-                    {f.sex.toLowerCase()} {f.breed.toLowerCase()}
-                  </Typography>
-                </CardContent>
+                <Card.Section>
+                  <Image height={350} src={f.image} alt="green iguana" />
+                </Card.Section>
+                <Title order={3}>{f.name}</Title>
+                <Text>
+                  {f.weight} pound {weeksToString(f.ageInWeeks)} old{" "}
+                  {f.sex.toLowerCase()} {f.breed.toLowerCase()}
+                </Text>
               </Card>
             </Link>
-          </Grid>
+          </Grid.Col>
         ))}
       </Grid>
     </div>
