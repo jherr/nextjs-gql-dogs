@@ -38,7 +38,9 @@ const Home: React.FunctionComponent<{
         <Image src={data.dog.image} alt={data.dog.name} />
       </Grid.Col>
       <Grid.Col xs={12} md={6} lg={4}>
-        <Title order={1}>{data.dog.name}</Title>
+        <Title order={1} className="dog-name">
+          {data.dog.name}
+        </Title>
 
         <Grid mt={10}>
           <Grid.Col span={4}>

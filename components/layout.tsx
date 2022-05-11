@@ -67,7 +67,7 @@ export default function Layout({ children }) {
                 />
               </MediaQuery>
               <DogBowl />
-              <Text ml={10} size="md">
+              <Text ml={10} size="md" className="site-name">
                 Oregon Humane Adoptable Dogs
               </Text>
             </div>
