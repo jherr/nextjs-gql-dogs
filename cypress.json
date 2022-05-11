@@ -1,4 +1,4 @@
 {
-  "pageLoadTimeout": 5000,
+  "pageLoadTimeout": 50000,
   "experimentalStudio": true
 }
