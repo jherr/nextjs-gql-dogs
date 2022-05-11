@@ -13,4 +13,4 @@ jobs:
           spec: cypress/integration/dogs/dogs.spec.js
           browser: chrome
           headless: true
-          build: npm run dev
+          start: npm run dev
