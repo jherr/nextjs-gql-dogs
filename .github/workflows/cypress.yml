@@ -9,7 +9,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          config: pageLoadTimeout=10000,baseUrl=http://localhost:3000
           spec: cypress/integration/dogs/dogs.spec.js
           browser: chrome
           headless: true
